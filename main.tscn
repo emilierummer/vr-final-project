@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdux4cdpm6lsv"]
+
+[ext_resource type="Script" uid="uid://tvsls0wro7dg" path="res://main.gd" id="1_ig7tw"]
+
+[sub_resource type="Environment" id="Environment_ig7tw"]
+ambient_light_color = Color(0.696758, 0.874268, 0.973674, 1)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_ig7tw")
+
+[node name="Origin" type="XROrigin3D" parent="."]
+
+[node name="Camera" type="XRCamera3D" parent="Origin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="LeftHand" type="XRController3D" parent="Origin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
+tracker = &"left_hand"
+
+[node name="RightHand" type="XRController3D" parent="Origin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
+tracker = &"right_hand"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ig7tw")
