@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cdux4cdpm6lsv"]
+[gd_scene load_steps=7 format=3 uid="uid://cdux4cdpm6lsv"]
 
 [ext_resource type="Script" uid="uid://tvsls0wro7dg" path="res://main.gd" id="1_ig7tw"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_ig7tw"]
-radius = 0.25
-height = 0.5
+[ext_resource type="Script" uid="uid://ct58rm6xls7qj" path="res://player.gd" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="3_1bvp3"]
+[ext_resource type="Script" uid="uid://b4sw3x8jore28" path="res://debug_console.gd" id="5_lquwl"]
 
 [sub_resource type="Environment" id="Environment_ig7tw"]
 ambient_light_color = Color(0.696758, 0.874268, 0.973674, 1)
@@ -13,6 +13,7 @@ ambient_light_color = Color(0.696758, 0.874268, 0.973674, 1)
 script = ExtResource("1_ig7tw")
 
 [node name="Origin" type="XROrigin3D" parent="."]
+script = ExtResource("2_1bvp3")
 
 [node name="Camera" type="XRCamera3D" parent="Origin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
@@ -21,19 +22,26 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -0.5)
 tracker = &"left_hand"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Origin/LeftHand"]
-mesh = SubResource("CapsuleMesh_ig7tw")
+[node name="LeftHand" parent="Origin/LeftHand" instance=ExtResource("2_h2yge")]
 
 [node name="RightHand" type="XRController3D" parent="Origin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
 tracker = &"right_hand"
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Origin/RightHand"]
-mesh = SubResource("CapsuleMesh_ig7tw")
-skeleton = NodePath("../../LeftHand")
+[node name="RightHand" parent="Origin/RightHand" instance=ExtResource("3_1bvp3")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ig7tw")
+
+[node name="DebugConsole" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00207686, 2.20368, -5.20448)
+text = "Debug Console:"
+script = ExtResource("5_lquwl")
+
+[connection signal="button_pressed" from="Origin/LeftHand" to="Origin" method="_on_left_hand_button_pressed"]
+[connection signal="button_released" from="Origin/LeftHand" to="Origin" method="_on_left_hand_button_released"]
+[connection signal="button_pressed" from="Origin/RightHand" to="Origin" method="_on_right_hand_button_pressed"]
+[connection signal="button_released" from="Origin/RightHand" to="Origin" method="_on_right_hand_button_released"]
