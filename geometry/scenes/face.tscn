@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://2yptkjdg80nf"]
+
+[ext_resource type="Script" uid="uid://dlm5740slvnjh" path="res://geometry/scripts/face.gd" id="1_wq543"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wq543"]
+resource_local_to_scene = true
+size = Vector3(0.25, 0.25, 0.05)
+
+[node name="Face" type="Area3D"]
+script = ExtResource("1_wq543")
+
+[node name="Collider" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.125, 0)
+shape = SubResource("BoxShape3D_wq543")
+debug_color = Color(0.776471, 0, 0.4, 1)

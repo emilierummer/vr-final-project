@@ -1,9 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdux4cdpm6lsv"]
+[gd_scene load_steps=7 format=3 uid="uid://cdux4cdpm6lsv"]
 
 [ext_resource type="Script" uid="uid://tvsls0wro7dg" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://ct58rm6xls7qj" path="res://player.gd" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="3_1bvp3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1bvp3"]
+radius = 0.075
 
 [sub_resource type="Environment" id="Environment_ig7tw"]
 ambient_light_color = Color(0.696758, 0.874268, 0.973674, 1)
@@ -24,11 +27,20 @@ tracker = &"left_hand"
 
 [node name="LeftHand" parent="Origin/LeftHand" instance=ExtResource("2_h2yge")]
 
+[node name="LeftHandCollider" type="Area3D" parent="Origin/LeftHand"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Origin/LeftHand/LeftHandCollider"]
+shape = SubResource("SphereShape3D_1bvp3")
+
 [node name="RightHand" type="XRController3D" parent="Origin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, -0.5)
 tracker = &"right_hand"
 
 [node name="RightHand" parent="Origin/RightHand" instance=ExtResource("3_1bvp3")]
+
+[node name="RightHandCollider" type="Area3D" parent="Origin/RightHand"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Origin/RightHand/RightHandCollider"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
