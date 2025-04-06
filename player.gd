@@ -1,5 +1,7 @@
 extends XROrigin3D
 
+const TRIGGER_THRESHOLD = 0.5
+const TRIGGER_DEBOUNCE = 2
 const PACKED_GEOMETRY = preload("res://geometry/scenes/geometry.tscn")
 
 @onready var LeftHand: XRNode3D = $LeftHand
@@ -7,6 +9,8 @@ const PACKED_GEOMETRY = preload("res://geometry/scenes/geometry.tscn")
 
 @onready var LeftHandCollider: Area3D = $LeftHand/LeftHandCollider
 @onready var RightHandCollider: Area3D = $RightHand/RightHandCollider
+
+@export var menu: Menu
 
 ## The parent node that all geometry should be created as children of
 @export var geometry_parent: Node
@@ -16,6 +20,13 @@ var current_left_geometry: Geometry = null
 ## The geometry that is currently being created/edited by the right controller
 var current_right_geometry: Geometry = null
 
+## Makes sure the thumbstick movement event is not handled too many times by 
+## waiting before handling more input
+@onready var trigger_timer: Timer = $TriggerTimer
+## Keeps track of what direction the trigger was in during the event before
+## to make it so we only debounce events for the same direction multiple times
+var prev_trigger_direction: String
+
 ################# HAND BUTTON HANDLING ####################
 
 ## Triggered when a button is pressed on the left controller
@@ -24,6 +35,8 @@ func _on_left_hand_button_pressed(button_name: String) -> void:
 		current_left_geometry = _handle_trigger(LeftHand, LeftHandCollider, current_left_geometry, true)
 	elif button_name == "grip_click":
 		pass
+	elif button_name == "ax_button":
+		menu.open()
 
 ## Triggered when a button is released on the left controller
 func _on_left_hand_button_released(button_name: String) -> void:
@@ -32,11 +45,47 @@ func _on_left_hand_button_released(button_name: String) -> void:
 	elif button_name == "grip_click":
 		pass
 
+## Triggered when the thumbstick is moved on the left controller
+func _on_left_hand_thumbstick_changed(name: String, value: Vector2) -> void:
+	# first we detect which direction the trigger is in
+	var trigger_direction: String
+	if value.x >= TRIGGER_THRESHOLD and abs(value.y) < TRIGGER_THRESHOLD:
+		trigger_direction = "right"
+	elif -value.x >= TRIGGER_THRESHOLD and abs(value.y) < TRIGGER_THRESHOLD:
+		trigger_direction = "left"
+	elif value.y >= TRIGGER_THRESHOLD and abs(value.x) < TRIGGER_THRESHOLD:
+		trigger_direction = "up"
+	elif -value.y >= TRIGGER_THRESHOLD and abs(value.x) < TRIGGER_THRESHOLD:
+		trigger_direction = "down"
+	else: # no direction, so reset timer and return early
+		trigger_timer.stop()
+	
+	# check if the direction is the same as last time, and if it is then we debounce it
+	if prev_trigger_direction == trigger_direction:
+		# don't handle anything if the input timer is not done
+		if trigger_timer.time_left > 0: return
+	prev_trigger_direction = trigger_direction
+	
+	# handle input
+	match trigger_direction:
+		"right":
+			DebugConsole.log("right")
+		"left":
+			DebugConsole.log("left")
+		"up":
+			DebugConsole.log("up")
+		"down":
+			DebugConsole.log("down")
+	# start timer until debounce is over
+	trigger_timer.start(TRIGGER_DEBOUNCE)
+
 ## Triggered when a button is pressed on the right controller
 func _on_right_hand_button_pressed(button_name: String) -> void:
 	if button_name == "trigger_click":
 		current_right_geometry = _handle_trigger(RightHand, RightHandCollider, current_right_geometry, true)
 	elif button_name == "grip_click":
+		pass
+	elif button_name == "ax_button":
 		pass
 
 ## Triggered when a button is released on the right controller

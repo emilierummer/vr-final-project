@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdux4cdpm6lsv"]
+[gd_scene load_steps=8 format=3 uid="uid://cdux4cdpm6lsv"]
 
 [ext_resource type="Script" uid="uid://tvsls0wro7dg" path="res://main.gd" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://ct58rm6xls7qj" path="res://player.gd" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://b4kad2kuba1yn" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/left_hand_low.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://l2n30mpbkdyw" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_hand_low.tscn" id="3_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://clff6djt8tq14" path="res://menu/menu.tscn" id="5_lquwl"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1bvp3"]
 radius = 0.075
@@ -41,6 +42,12 @@ tracker = &"right_hand"
 [node name="RightHandCollider" type="Area3D" parent="Origin/RightHand"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Origin/RightHand/RightHandCollider"]
+shape = SubResource("SphereShape3D_1bvp3")
+
+[node name="Menu" parent="Origin" instance=ExtResource("5_lquwl")]
+
+[node name="TriggerTimer" type="Timer" parent="Origin"]
+one_shot = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -52,5 +59,6 @@ environment = SubResource("Environment_ig7tw")
 
 [connection signal="button_pressed" from="Origin/LeftHand" to="Origin" method="_on_left_hand_button_pressed"]
 [connection signal="button_released" from="Origin/LeftHand" to="Origin" method="_on_left_hand_button_released"]
+[connection signal="input_vector2_changed" from="Origin/LeftHand" to="Origin" method="_on_left_hand_thumbstick_changed"]
 [connection signal="button_pressed" from="Origin/RightHand" to="Origin" method="_on_right_hand_button_pressed"]
 [connection signal="button_released" from="Origin/RightHand" to="Origin" method="_on_right_hand_button_released"]

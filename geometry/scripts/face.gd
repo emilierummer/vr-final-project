@@ -12,10 +12,7 @@ var held_by: XRNode3D = null
 ## Every frame, if the face is being held, move it to the controller's position
 func _process(_delta: float) -> void:
 	if held_by:
-		DebugConsole.log("============")
 		var new_position = held_by.global_position
-		DebugConsole.log("Moving face " + controls + " to")
-		DebugConsole.log(new_position)
 		var distance_to_start = abs(new_position - geometry.start_vertex.global_position)
 		var distance_to_end   = abs(new_position - geometry.end_vertex.global_position)
 		if controls == "x" or controls == "-x":

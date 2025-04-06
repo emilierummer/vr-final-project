@@ -14,7 +14,6 @@ func _on_start_initial_drag(controller: XRNode3D) -> void:
 	end_vertex.held_by = controller
 	end_vertex.vertex_moved.connect(_on_box_size_change)
 	global_position = controller.global_position
-	DebugConsole.log(global_position)
 
 func _on_end_initial_drag() -> void:
 	end_vertex.held_by = null

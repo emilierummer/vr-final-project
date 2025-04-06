@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://clff6djt8tq14"]
+
+[ext_resource type="Script" uid="uid://cmnx0bqlu7nt0" path="res://menu/menu.gd" id="1_j0t7f"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_jc4t8"]
+
+[node name="Menu" type="MeshInstance3D"]
+mesh = SubResource("QuadMesh_jc4t8")
+script = ExtResource("1_j0t7f")
