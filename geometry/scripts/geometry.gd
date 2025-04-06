@@ -32,16 +32,28 @@ var size: Vector3 :
 	set(value):
 		printerr("Cannot set size directly, modify start_vertex or end_vertex instead")
 
+var min_pos: Vector3 :
+	get:
+		return start_vertex.global_position.min(end_vertex.global_position)
+	set(value):
+		printerr("Cannot set min_pos directly, modify start_vertex or end_vertex instead")
+
+var max_pos: Vector3 :
+	get:
+		return start_vertex.global_position.max(end_vertex.global_position)
+	set(value):
+		printerr("Cannot set max_pos directly, modify start_vertex or end_vertex instead")
+
+func get_faces():
+	return %"FaceColliders".get_children()
+
 ##################### MESH UPDATING #####################
 
 func _on_box_size_change() -> void:
-	# calculate new sizes and positions
-	var min_pos = start_vertex.global_position.min(end_vertex.global_position)
-	# make updates
-	update_box_mesh(size, min_pos)
-	update_faces(size, min_pos)
+	update_box_mesh()
+	update_faces()
 
-func update_box_mesh(size: Vector3, min_pos: Vector3) -> void:
+func update_box_mesh() -> void:
 	%BoxMesh.mesh.size = size
 	%BoxMesh.global_position = Vector3(
 		min_pos.x + size.x / 2,
@@ -49,6 +61,6 @@ func update_box_mesh(size: Vector3, min_pos: Vector3) -> void:
 		min_pos.z + size.z / 2,
 	)
 
-func update_faces(size: Vector3, min_pos: Vector3) -> void:
-	for face in %"Face Colliders".get_children():
-		face.update_geometry()
+func update_faces() -> void:
+	for face in get_faces():
+		face.update_geometry(min_pos, max_pos, size)

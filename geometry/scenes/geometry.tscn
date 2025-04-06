@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpo5wx0w0psy2"]
+[gd_scene load_steps=9 format=3 uid="uid://bpo5wx0w0psy2"]
 
 [ext_resource type="Script" uid="uid://bep5pec2ef6xj" path="res://geometry/scripts/geometry.gd" id="1_0w0be"]
 [ext_resource type="Material" uid="uid://h6nth1uis7co" path="res://geometry/materials/box_material.tres" id="2_5v8ry"]
@@ -9,6 +9,18 @@
 resource_local_to_scene = true
 material = ExtResource("2_5v8ry")
 size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8uxxn"]
+resource_local_to_scene = true
+size = Vector3(0.25, 0.25, 0.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u2krq"]
+resource_local_to_scene = true
+size = Vector3(0.25, 0.25, 0.05)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5ut0l"]
+resource_local_to_scene = true
+size = Vector3(0.25, 0.25, 0.05)
 
 [node name="Geometry" type="Node3D" node_paths=PackedStringArray("start_vertex", "end_vertex")]
 script = ExtResource("1_0w0be")
@@ -25,34 +37,57 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.125, 0.125)
 mesh = SubResource("BoxMesh_rxjut")
 
-[node name="Face Colliders" type="Node3D" parent="."]
+[node name="FaceColliders" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="FaceNegX" parent="Face Colliders" node_paths=PackedStringArray("geometry") instance=ExtResource("4_8uxxn")]
+[node name="FaceNegX" parent="FaceColliders" node_paths=PackedStringArray("geometry") instance=ExtResource("4_8uxxn")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0.25)
 controls = "-x"
 geometry = NodePath("../..")
 
-[node name="FacePosX" parent="Face Colliders" node_paths=PackedStringArray("geometry") instance=ExtResource("4_8uxxn")]
+[node name="Collider" parent="FaceColliders/FaceNegX" index="0"]
+shape = SubResource("BoxShape3D_8uxxn")
+debug_color = Color(0, 0.509804, 0.298039, 1)
+
+[node name="FacePosX" parent="FaceColliders" node_paths=PackedStringArray("geometry") instance=ExtResource("4_8uxxn")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.25, 0, 0.25)
 controls = "x"
 geometry = NodePath("../..")
 
-[node name="FaceNegY" parent="Face Colliders" node_paths=PackedStringArray("geometry") instance=ExtResource("4_8uxxn")]
+[node name="FaceNegY" parent="FaceColliders" node_paths=PackedStringArray("geometry") instance=ExtResource("4_8uxxn")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 controls = "-y"
 geometry = NodePath("../..")
 
-[node name="FacePosY" parent="Face Colliders" node_paths=PackedStringArray("geometry") instance=ExtResource("4_8uxxn")]
+[node name="Collider" parent="FaceColliders/FaceNegY" index="0"]
+shape = SubResource("BoxShape3D_u2krq")
+debug_color = Color(0, 0.509804, 0.298039, 1)
+
+[node name="FacePosY" parent="FaceColliders" node_paths=PackedStringArray("geometry") instance=ExtResource("4_8uxxn")]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.25, 0)
 controls = "y"
 geometry = NodePath("../..")
 
-[node name="FaceNegZ" parent="Face Colliders" node_paths=PackedStringArray("geometry") instance=ExtResource("4_8uxxn")]
+[node name="FaceNegZ" parent="FaceColliders" node_paths=PackedStringArray("geometry") instance=ExtResource("4_8uxxn")]
 controls = "-z"
 geometry = NodePath("../..")
 
-[node name="FacePosZ" parent="Face Colliders" node_paths=PackedStringArray("geometry") instance=ExtResource("4_8uxxn")]
+[node name="Collider" parent="FaceColliders/FaceNegZ" index="0"]
+shape = SubResource("BoxShape3D_5ut0l")
+debug_color = Color(0, 0.511395, 0.299963, 1)
+
+[node name="FacePosZ" parent="FaceColliders" node_paths=PackedStringArray("geometry") instance=ExtResource("4_8uxxn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
 controls = "z"
 geometry = NodePath("../..")
+
+[connection signal="face_moved" from="FaceColliders/FaceNegX" to="." method="_on_box_size_change"]
+[connection signal="face_moved" from="FaceColliders/FacePosX" to="." method="_on_box_size_change"]
+[connection signal="face_moved" from="FaceColliders/FaceNegY" to="." method="_on_box_size_change"]
+[connection signal="face_moved" from="FaceColliders/FacePosY" to="." method="_on_box_size_change"]
+[connection signal="face_moved" from="FaceColliders/FaceNegZ" to="." method="_on_box_size_change"]
+[connection signal="face_moved" from="FaceColliders/FacePosZ" to="." method="_on_box_size_change"]
+
+[editable path="FaceColliders/FaceNegX"]
+[editable path="FaceColliders/FaceNegY"]
+[editable path="FaceColliders/FaceNegZ"]

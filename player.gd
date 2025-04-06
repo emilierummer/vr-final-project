@@ -46,9 +46,8 @@ func _on_right_hand_button_released(button_name: String) -> void:
 	elif button_name == "grip_click":
 		pass
 
-## Generic handler for trigger click or release events (to avoid code duplication). 
-## Returns either a Geometry object or void/null, depending on what the effect of the trigger is
-func _handle_trigger(hand: XRNode3D, collider: Area3D, current_geom: Geometry, click: bool):
+## Generic handler for trigger click or release events (to avoid code duplication)
+func _handle_trigger(hand: XRNode3D, collider: Area3D, current_geom: Geometry, click: bool) -> Geometry:
 	var overlapping_faces = collider.get_overlapping_areas().filter(func filter(area): return area is Face)
 	if click:
 		# handle click of trigger
@@ -56,9 +55,10 @@ func _handle_trigger(hand: XRNode3D, collider: Area3D, current_geom: Geometry, c
 			return start_creating_geometry(hand)
 		else:
 			overlapping_faces[0].held_by = hand
+			return overlapping_faces[0].geometry
 	else:
 		# handle release of trigger
-		for face in overlapping_faces.filter(func filter(face): return face.held_by == hand):
+		for face in current_geom.get_faces():
 			face.held_by = null
 		finish_creating_geometry(hand, current_geom)
 		return null
