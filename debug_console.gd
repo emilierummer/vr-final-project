@@ -13,6 +13,8 @@ func log(msg) -> void:
 	# convert messages to strings
 	if msg is Vector3:
 		msg = "(" + str(snappedf(msg.x, 0.001)) + ", " + str(snappedf(msg.y, 0.001)) + ", " + str(snappedf(msg.z, 0.001)) + ")"
+	elif msg is int or msg is float:
+		msg = str(snappedf(msg, 0.001))
 	# output message
 	print(msg)
 	if label:

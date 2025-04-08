@@ -1,22 +1,33 @@
-class_name Menu extends MeshInstance3D
+class_name Menu extends Node3D
+
+var is_open: bool = false
 
 func open() -> void:
-	pass
+	is_open = true
 
 func close() -> void:
-	pass
+	is_open = false
+
+func toggle_open() -> void:
+	if is_open: close()
+	else: open()
 
 func handle_up() -> void:
-	pass
+	if not is_open: return
+	#TODO
 
 func handle_down() -> void:
-	pass
+	if not is_open: return
+	#TODO
 
 func handle_left() -> void:
-	pass
+	if not is_open: return
+	#TODO
 
 func handle_right() -> void:
-	pass
+	if not is_open: return
+	#TODO
 
 func handle_select() -> void:
-	pass
+	if not is_open: return
+	#TODO

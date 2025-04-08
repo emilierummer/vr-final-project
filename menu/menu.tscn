@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://clff6djt8tq14"]
+[gd_scene load_steps=4 format=3 uid="uid://clff6djt8tq14"]
 
 [ext_resource type="Script" uid="uid://cmnx0bqlu7nt0" path="res://menu/menu.gd" id="1_j0t7f"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_jc4t8"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j0t7f"]
+shading_mode = 0
+albedo_color = Color(0.219995, 0.541464, 0.819224, 1)
 
-[node name="Menu" type="MeshInstance3D"]
-mesh = SubResource("QuadMesh_jc4t8")
+[sub_resource type="QuadMesh" id="QuadMesh_jc4t8"]
+material = SubResource("StandardMaterial3D_j0t7f")
+size = Vector2(0.313, 0.469)
+
+[node name="Menu" type="Node3D"]
 script = ExtResource("1_j0t7f")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -0.25, -0.25, -0.5)
+mesh = SubResource("QuadMesh_jc4t8")

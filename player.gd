@@ -10,7 +10,8 @@ const PACKED_GEOMETRY = preload("res://geometry/scenes/geometry.tscn")
 @onready var LeftHandCollider: Area3D = $LeftHand/LeftHandCollider
 @onready var RightHandCollider: Area3D = $RightHand/RightHandCollider
 
-@export var menu: Menu
+## The furniture menu node
+@onready var menu: Menu = $Menu
 
 ## The parent node that all geometry should be created as children of
 @export var geometry_parent: Node
@@ -36,7 +37,9 @@ func _on_left_hand_button_pressed(button_name: String) -> void:
 	elif button_name == "grip_click":
 		pass
 	elif button_name == "ax_button":
-		menu.open()
+		menu.global_position = $Camera.global_position
+		menu.global_rotation_degrees.y = $Camera.global_rotation_degrees.y
+		menu.toggle_open()
 
 ## Triggered when a button is released on the left controller
 func _on_left_hand_button_released(button_name: String) -> void:
@@ -47,6 +50,8 @@ func _on_left_hand_button_released(button_name: String) -> void:
 
 ## Triggered when the thumbstick is moved on the left controller
 func _on_left_hand_thumbstick_changed(name: String, value: Vector2) -> void:
+	# thumbstick only controls the menu (no menu, no thumbstick control calculation)
+	if not menu.is_open: return
 	# first we detect which direction the trigger is in
 	var trigger_direction: String
 	if value.x >= TRIGGER_THRESHOLD and abs(value.y) < TRIGGER_THRESHOLD:
@@ -59,23 +64,17 @@ func _on_left_hand_thumbstick_changed(name: String, value: Vector2) -> void:
 		trigger_direction = "down"
 	else: # no direction, so reset timer and return early
 		trigger_timer.stop()
-	
 	# check if the direction is the same as last time, and if it is then we debounce it
 	if prev_trigger_direction == trigger_direction:
 		# don't handle anything if the input timer is not done
 		if trigger_timer.time_left > 0: return
 	prev_trigger_direction = trigger_direction
-	
 	# handle input
 	match trigger_direction:
-		"right":
-			DebugConsole.log("right")
-		"left":
-			DebugConsole.log("left")
-		"up":
-			DebugConsole.log("up")
-		"down":
-			DebugConsole.log("down")
+		"right": menu.handle_right()
+		"left": menu.handle_left()
+		"up": menu.handle_up()
+		"down": menu.handle_down()
 	# start timer until debounce is over
 	trigger_timer.start(TRIGGER_DEBOUNCE)
 

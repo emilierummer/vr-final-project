@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://bpo5wx0w0psy2"]
 
 [ext_resource type="Script" uid="uid://bep5pec2ef6xj" path="res://geometry/scripts/geometry.gd" id="1_0w0be"]
-[ext_resource type="Material" uid="uid://h6nth1uis7co" path="res://geometry/materials/box_material.tres" id="2_5v8ry"]
+[ext_resource type="Material" uid="uid://h6nth1uis7co" path="res://materials/box_material.tres" id="2_5v8ry"]
 [ext_resource type="PackedScene" uid="uid://dxgwwff6tuycq" path="res://geometry/scenes/vertex.tscn" id="2_rxjut"]
 [ext_resource type="PackedScene" uid="uid://2yptkjdg80nf" path="res://geometry/scenes/face.tscn" id="4_8uxxn"]
 
