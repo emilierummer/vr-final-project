@@ -1,0 +1,50 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dbw7um713ooop"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn6ra"]
+bg_color = Color(0.545856, 0.733335, 0.809377, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0726262, 0.140703, 0.167281, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_muft2"]
+bg_color = Color(0.362169, 0.548727, 0.622981, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fnlfk"]
+bg_color = Color(0.545856, 0.733335, 0.809377, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.0726262, 0.140703, 0.167281, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vn0o2"]
+bg_color = Color(0.204714, 0.27906, 0.318533, 1)
+
+[resource]
+default_font_size = 32
+Button/styles/focus = SubResource("StyleBoxFlat_nn6ra")
+Button/styles/normal = SubResource("StyleBoxFlat_muft2")
+FocusedButton/base_type = &"Button"
+FocusedButton/styles/normal = SubResource("StyleBoxFlat_fnlfk")
+GridContainer/constants/h_separation = 16
+GridContainer/constants/v_separation = 16
+MarginContainer/constants/margin_bottom = 32
+MarginContainer/constants/margin_left = 32
+MarginContainer/constants/margin_right = 32
+MarginContainer/constants/margin_top = 32
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_vn0o2")
+VBoxContainer/constants/separation = 32

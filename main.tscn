@@ -46,6 +46,7 @@ shape = SubResource("SphereShape3D_1bvp3")
 
 [node name="Menu" parent="Origin" instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+visible = false
 
 [node name="TriggerTimer" type="Timer" parent="Origin"]
 one_shot = true
