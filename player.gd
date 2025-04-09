@@ -1,7 +1,7 @@
 extends XROrigin3D
 
 const TRIGGER_THRESHOLD = 0.5
-const TRIGGER_DEBOUNCE = 2
+const TRIGGER_DEBOUNCE = 0.5
 const PACKED_GEOMETRY = preload("res://geometry/scenes/geometry.tscn")
 
 @onready var LeftHand: XRNode3D = $LeftHand
@@ -85,7 +85,7 @@ func _on_right_hand_button_pressed(button_name: String) -> void:
 	elif button_name == "grip_click":
 		pass
 	elif button_name == "ax_button":
-		pass
+		menu.handle_select()
 
 ## Triggered when a button is released on the right controller
 func _on_right_hand_button_released(button_name: String) -> void:

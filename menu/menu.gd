@@ -5,7 +5,7 @@ class_name Menu extends Node3D
 var is_open: bool = false
 
 ## The index of which menu item is focused. If the close button is focused, its value is -1
-var focused_option:int = 0
+var focused_option: int = 0
 
 func set_focus(value: int) -> void:
 	if focused_option == -1:

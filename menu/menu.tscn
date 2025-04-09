@@ -1,8 +1,48 @@
-[gd_scene load_steps=7 format=3 uid="uid://clff6djt8tq14"]
+[gd_scene load_steps=47 format=3 uid="uid://clff6djt8tq14"]
 
 [ext_resource type="Script" uid="uid://cmnx0bqlu7nt0" path="res://menu/menu.gd" id="1_j0t7f"]
 [ext_resource type="Theme" uid="uid://dbw7um713ooop" path="res://resources/menu_theme.tres" id="2_g18jx"]
 [ext_resource type="PackedScene" uid="uid://clo0fnstn01ew" path="res://menu/menu_item.tscn" id="3_6nwqt"]
+[ext_resource type="PackedScene" uid="uid://kdoq12s8eeyq" path="res://resources/meshes/air_hockey_001.glb" id="4_pbjm4"]
+[ext_resource type="PackedScene" uid="uid://bobug41fs32ns" path="res://resources/meshes/bathroom_item_001.glb" id="5_dmxns"]
+[ext_resource type="PackedScene" uid="uid://cfvpxbh5o3qiw" path="res://resources/meshes/bed_001.glb" id="6_3vbpa"]
+[ext_resource type="PackedScene" uid="uid://d24bxmxkdeini" path="res://resources/meshes/box_001.glb" id="7_aycgx"]
+[ext_resource type="PackedScene" uid="uid://knnnf4s4kr2f" path="res://resources/meshes/camera_001.glb" id="8_bpqio"]
+[ext_resource type="PackedScene" uid="uid://d2t4m7p1w8fnj" path="res://resources/meshes/closet_001.glb" id="9_o0hb3"]
+[ext_resource type="PackedScene" uid="uid://dhsnpi3vfvqjk" path="res://resources/meshes/closet_002.glb" id="10_f5xy8"]
+[ext_resource type="PackedScene" uid="uid://ybkopsnk5g2d" path="res://resources/meshes/clothes_001.glb" id="11_p0n8t"]
+[ext_resource type="PackedScene" uid="uid://d18nmydif7o3v" path="res://resources/meshes/clothes_002.glb" id="12_tmd6c"]
+[ext_resource type="PackedScene" uid="uid://d2vdyfbi7j6wy" path="res://resources/meshes/coffee_machine_001.glb" id="13_h81yq"]
+[ext_resource type="PackedScene" uid="uid://c1265b0gcwvrb" path="res://resources/meshes/coffee_table_001.glb" id="14_eorms"]
+[ext_resource type="PackedScene" uid="uid://cj6h7o0d2npx6" path="res://resources/meshes/dish_001.glb" id="15_3vbpa"]
+[ext_resource type="PackedScene" uid="uid://0kgdnemnwydi" path="res://resources/meshes/dish_002.glb" id="16_lrfri"]
+[ext_resource type="PackedScene" uid="uid://c42ophshwxdxs" path="res://resources/meshes/door_001.glb" id="17_bu6d0"]
+[ext_resource type="PackedScene" uid="uid://bd38nbixc6g2h" path="res://resources/meshes/door_frame_001.glb" id="18_s34wi"]
+[ext_resource type="PackedScene" uid="uid://dwauvju3mofy4" path="res://resources/meshes/dresser_001.glb" id="19_sy1yj"]
+[ext_resource type="PackedScene" uid="uid://bvkkd50roogq1" path="res://resources/meshes/drink_001.glb" id="20_x2kxn"]
+[ext_resource type="PackedScene" uid="uid://v5o7a520v6ew" path="res://resources/meshes/drink_002.glb" id="21_u50j4"]
+[ext_resource type="PackedScene" uid="uid://bwa1k4xpr8b3j" path="res://resources/meshes/dumbbell_001.glb" id="22_ibpco"]
+[ext_resource type="PackedScene" uid="uid://dvv3u5knaa7p0" path="res://resources/meshes/dumbbell_002.glb" id="23_6fv63"]
+[ext_resource type="PackedScene" uid="uid://bghp3lmkepyq2" path="res://resources/meshes/flower_001.glb" id="24_5hnk0"]
+[ext_resource type="PackedScene" uid="uid://dtlh6mkobs0uv" path="res://resources/meshes/fridge_001.glb" id="25_dioeo"]
+[ext_resource type="PackedScene" uid="uid://dxmigygf08w65" path="res://resources/meshes/ketchup_001.glb" id="26_g73qe"]
+[ext_resource type="PackedScene" uid="uid://bxhfk35sfjqm6" path="res://resources/meshes/kitchen_chair_001.glb" id="27_fshpg"]
+[ext_resource type="PackedScene" uid="uid://ct2pv6pwo3obg" path="res://resources/meshes/kitchen_sink_001.glb" id="28_aomwg"]
+[ext_resource type="PackedScene" uid="uid://busliyj877v82" path="res://resources/meshes/kitchen_table_001.glb" id="29_lssnm"]
+[ext_resource type="PackedScene" uid="uid://dsp2s17j38rr0" path="res://resources/meshes/lamp_001.glb" id="30_w1hso"]
+[ext_resource type="PackedScene" uid="uid://blwtxj6aeg1w8" path="res://resources/meshes/lamp_002.glb" id="31_yrsnn"]
+[ext_resource type="PackedScene" uid="uid://d2l44jlm0mg4o" path="res://resources/meshes/lounge_chair_001.glb" id="32_qqhe3"]
+[ext_resource type="PackedScene" uid="uid://s8vpija4mqjx" path="res://resources/meshes/microwave_oven_001.glb" id="33_50fya"]
+[ext_resource type="PackedScene" uid="uid://cia43pqeryf2v" path="res://resources/meshes/musical_instrument_001.glb" id="34_mg22a"]
+[ext_resource type="PackedScene" uid="uid://cce134umbcpr6" path="res://resources/meshes/office_table_001.glb" id="35_yjxha"]
+[ext_resource type="PackedScene" uid="uid://cm44s341ypuig" path="res://resources/meshes/scratching_post_001.glb" id="36_ibpco"]
+[ext_resource type="PackedScene" uid="uid://dcd6c2pgrgemi" path="res://resources/meshes/sofa_001.glb" id="37_6fv63"]
+[ext_resource type="PackedScene" uid="uid://bpuahn64jhw6r" path="res://resources/meshes/toy_001.glb" id="38_5hnk0"]
+[ext_resource type="PackedScene" uid="uid://ddht6r1h75yrc" path="res://resources/meshes/toy_002.glb" id="39_dioeo"]
+[ext_resource type="PackedScene" uid="uid://wr2srtyi6i1p" path="res://resources/meshes/training_item_001.glb" id="40_g73qe"]
+[ext_resource type="PackedScene" uid="uid://c1ydrbnpeiikk" path="res://resources/meshes/training_item_002.glb" id="41_fshpg"]
+[ext_resource type="PackedScene" uid="uid://yearm3e5gqw5" path="res://resources/meshes/tv_wall_001.glb" id="42_5hnk0"]
+[ext_resource type="PackedScene" uid="uid://drwlmcd6jr5bb" path="res://resources/meshes/washing_machine_001.glb" id="43_dioeo"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_6nwqt"]
 viewport_path = NodePath("SubViewportContainer/MenuViewport")
@@ -80,24 +120,200 @@ columns = 4
 
 [node name="MenuItem1" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
 layout_mode = 2
+text = "Air Hockey Table"
+furniture_scene = ExtResource("4_pbjm4")
 
 [node name="MenuItem2" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
 layout_mode = 2
+text = "Laundry Basket"
+furniture_scene = ExtResource("5_dmxns")
 
 [node name="MenuItem3" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
 layout_mode = 2
+text = "Bed"
+furniture_scene = ExtResource("6_3vbpa")
 
 [node name="MenuItem4" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
 layout_mode = 2
+text = "File Box"
+furniture_scene = ExtResource("7_aycgx")
 
 [node name="MenuItem5" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
 layout_mode = 2
+text = "Camera"
+furniture_scene = ExtResource("8_bpqio")
 
 [node name="MenuItem6" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
 layout_mode = 2
+text = "Closet 1"
+furniture_scene = ExtResource("9_o0hb3")
 
 [node name="MenuItem7" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
 layout_mode = 2
+text = "Closet 2"
+furniture_scene = ExtResource("10_f5xy8")
 
 [node name="MenuItem8" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
 layout_mode = 2
+text = "Hanging Clothes"
+furniture_scene = ExtResource("11_p0n8t")
+
+[node name="MenuItem9" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Folded Clothes"
+furniture_scene = ExtResource("12_tmd6c")
+
+[node name="MenuItem10" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Coffee Maker"
+furniture_scene = ExtResource("13_h81yq")
+
+[node name="MenuItem11" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Coffee Table"
+furniture_scene = ExtResource("14_eorms")
+
+[node name="MenuItem12" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Plate"
+furniture_scene = ExtResource("15_3vbpa")
+
+[node name="MenuItem13" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Fruit Basket"
+furniture_scene = ExtResource("16_lrfri")
+
+[node name="MenuItem14" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Door"
+furniture_scene = ExtResource("17_bu6d0")
+
+[node name="MenuItem15" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Door Frame"
+furniture_scene = ExtResource("18_s34wi")
+
+[node name="MenuItem16" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Dresser"
+furniture_scene = ExtResource("19_sy1yj")
+
+[node name="MenuItem17" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Coke Bottle"
+furniture_scene = ExtResource("20_x2kxn")
+
+[node name="MenuItem18" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Water Bottle"
+furniture_scene = ExtResource("21_u50j4")
+
+[node name="MenuItem19" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Weight 1"
+furniture_scene = ExtResource("22_ibpco")
+
+[node name="MenuItem20" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Weight 2"
+furniture_scene = ExtResource("23_6fv63")
+
+[node name="MenuItem21" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Flower Pot"
+furniture_scene = ExtResource("24_5hnk0")
+
+[node name="MenuItem22" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Fridge"
+furniture_scene = ExtResource("25_dioeo")
+
+[node name="MenuItem23" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Ketchup Bottle"
+furniture_scene = ExtResource("26_g73qe")
+
+[node name="MenuItem24" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Kitchen Chair"
+furniture_scene = ExtResource("27_fshpg")
+
+[node name="MenuItem25" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Kitchen Sink"
+furniture_scene = ExtResource("28_aomwg")
+
+[node name="MenuItem26" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Kitchen Counter"
+furniture_scene = ExtResource("29_lssnm")
+
+[node name="MenuItem27" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Table Lamp"
+furniture_scene = ExtResource("30_w1hso")
+
+[node name="MenuItem28" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Standing Lamp"
+furniture_scene = ExtResource("31_yrsnn")
+
+[node name="MenuItem29" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Lounge Chair"
+furniture_scene = ExtResource("32_qqhe3")
+
+[node name="MenuItem30" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Microwave"
+furniture_scene = ExtResource("33_50fya")
+
+[node name="MenuItem31" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Piano"
+furniture_scene = ExtResource("34_mg22a")
+
+[node name="MenuItem32" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Desk"
+furniture_scene = ExtResource("35_yjxha")
+
+[node name="MenuItem33" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Cat Tower"
+furniture_scene = ExtResource("36_ibpco")
+
+[node name="MenuItem34" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Couch"
+furniture_scene = ExtResource("37_6fv63")
+
+[node name="MenuItem35" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Toy Car"
+furniture_scene = ExtResource("38_5hnk0")
+
+[node name="MenuItem36" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Blackboard"
+furniture_scene = ExtResource("39_dioeo")
+
+[node name="MenuItem37" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Workout 1"
+furniture_scene = ExtResource("40_g73qe")
+
+[node name="MenuItem38" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Weight Rack"
+furniture_scene = ExtResource("41_fshpg")
+
+[node name="MenuItem39" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "TV"
+furniture_scene = ExtResource("42_5hnk0")
+
+[node name="MenuItem40" parent="SubViewportContainer/MenuViewport/Menu Base/MarginContainer/VBoxContainer/ScrollContainer/OptionGrid" instance=ExtResource("3_6nwqt")]
+layout_mode = 2
+text = "Washing Machine"
+furniture_scene = ExtResource("43_dioeo")
