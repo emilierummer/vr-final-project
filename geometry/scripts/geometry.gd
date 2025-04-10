@@ -8,6 +8,11 @@ const MIN_SIDE_LENGTH: float = 0.1
 ## The opposite corner from the first, it's final position is where the drag ends
 @export var end_vertex: Vertex
 
+## Stores the child furniture scene
+var furniture_scene: Node3D
+## Stores the size of the furniture's bounding box so it doesn't have to be recalculated
+var furniture_size: Vector3
+
 ##################### INPUT HANDLING #####################
 
 func _on_start_initial_drag(controller: XRNode3D) -> void:
@@ -51,6 +56,7 @@ func get_faces():
 func _on_box_size_change() -> void:
 	update_box_mesh()
 	update_faces()
+	update_furniture()
 
 func update_box_mesh() -> void:
 	%BoxMesh.mesh.size = size
@@ -63,3 +69,23 @@ func update_box_mesh() -> void:
 func update_faces() -> void:
 	for face in get_faces():
 		face.update_geometry(min_pos, max_pos, size)
+
+func update_furniture() -> void:
+	if !furniture_scene: return
+	# scale furniture scene to match box
+	var furniture_scale = size / furniture_size
+	furniture_scene.transform = furniture_scene.transform.orthonormalized().scaled(furniture_scale)
+	# move furniture to line up with box
+	furniture_scene.global_position = Vector3(
+		min_pos.x + size.x / 2,
+		min_pos.y,
+		min_pos.z + size.z / 2,
+	)
+
+func set_furniture(furniture: PackedScene) -> void:
+	if furniture_scene: furniture_scene.call_deferred("queue_free")
+	%BoxMesh.visible = false
+	furniture_scene = furniture.instantiate()
+	add_child(furniture_scene)
+	furniture_size = furniture_scene.get_child(0).mesh.get_aabb().size
+	update_furniture()

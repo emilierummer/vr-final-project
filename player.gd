@@ -28,6 +28,9 @@ var current_right_geometry: Geometry = null
 ## to make it so we only debounce events for the same direction multiple times
 var prev_trigger_direction: String
 
+## Keeps track of if a furniture mesh has been selected from the menu
+var selected_furniture: PackedScene
+
 ################# HAND BUTTON HANDLING ####################
 
 ## Triggered when a button is pressed on the left controller
@@ -99,7 +102,10 @@ func _handle_trigger(hand: XRNode3D, collider: Area3D, current_geom: Geometry, c
 	var overlapping_faces = collider.get_overlapping_areas().filter(func filter(area): return area is Face)
 	if click:
 		# handle click of trigger
-		if overlapping_faces.size() == 0:
+		if selected_furniture and overlapping_faces.size() > 0:
+			_on_furniture_placed(overlapping_faces[0].geometry)
+			return null
+		elif overlapping_faces.size() == 0:
 			return start_creating_geometry(hand)
 		else:
 			overlapping_faces[0].held_by = hand
@@ -130,3 +136,10 @@ func finish_creating_geometry(controller: XRNode3D, geometry: Geometry) -> void:
 		geometry.call_deferred("queue_free")
 	else:
 		geometry._on_end_initial_drag()
+
+func _on_furniture_selected(mesh: PackedScene) -> void:
+	selected_furniture = mesh
+
+func _on_furniture_placed(geometry: Geometry) -> void:
+	geometry.set_furniture(selected_furniture)
+	selected_furniture = null

@@ -1,5 +1,7 @@
 class_name Menu extends Node3D
 
+signal furniture_selected(furniture: PackedScene)
+
 @onready var options: Array = %OptionGrid.get_children()
 
 var is_open: bool = false
@@ -58,5 +60,4 @@ func handle_select() -> void:
 	if focused_option == -1:
 		close()
 	else:
-		#TODO
-		pass
+		furniture_selected.emit(options[focused_option].furniture_scene)

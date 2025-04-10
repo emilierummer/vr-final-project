@@ -64,3 +64,4 @@ environment = SubResource("Environment_ig7tw")
 [connection signal="input_vector2_changed" from="Origin/LeftHand" to="Origin" method="_on_left_hand_thumbstick_changed"]
 [connection signal="button_pressed" from="Origin/RightHand" to="Origin" method="_on_right_hand_button_pressed"]
 [connection signal="button_released" from="Origin/RightHand" to="Origin" method="_on_right_hand_button_released"]
+[connection signal="furniture_selected" from="Origin/Menu" to="Origin" method="_on_furniture_selected"]
