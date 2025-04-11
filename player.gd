@@ -31,14 +31,14 @@ var prev_trigger_direction: String
 ## Keeps track of if a furniture mesh has been selected from the menu
 var selected_furniture: PackedScene
 
-################# HAND BUTTON HANDLING ####################
+################# INPUT DETECTION ####################
 
 ## Triggered when a button is pressed on the left controller
 func _on_left_hand_button_pressed(button_name: String) -> void:
 	if button_name == "trigger_click": 
 		current_left_geometry = _handle_trigger(LeftHand, LeftHandCollider, current_left_geometry, true)
 	elif button_name == "grip_click":
-		pass
+		current_left_geometry = _handle_grab(LeftHand, LeftHandCollider, current_left_geometry, true)
 	elif button_name == "ax_button":
 		menu.global_position = $Camera.global_position
 		menu.global_rotation_degrees.y = $Camera.global_rotation_degrees.y
@@ -49,7 +49,7 @@ func _on_left_hand_button_released(button_name: String) -> void:
 	if button_name == "trigger_click":
 		current_left_geometry = _handle_trigger(LeftHand, LeftHandCollider, current_left_geometry, false)
 	elif button_name == "grip_click":
-		pass
+		current_left_geometry = _handle_grab(LeftHand, LeftHandCollider, current_left_geometry, false)
 
 ## Triggered when the thumbstick is moved on the left controller
 func _on_left_hand_thumbstick_changed(name: String, value: Vector2) -> void:
@@ -86,7 +86,7 @@ func _on_right_hand_button_pressed(button_name: String) -> void:
 	if button_name == "trigger_click":
 		current_right_geometry = _handle_trigger(RightHand, RightHandCollider, current_right_geometry, true)
 	elif button_name == "grip_click":
-		pass
+		current_right_geometry = _handle_grab(RightHand, RightHandCollider, current_right_geometry, true)
 	elif button_name == "ax_button":
 		menu.handle_select()
 
@@ -95,7 +95,9 @@ func _on_right_hand_button_released(button_name: String) -> void:
 	if button_name == "trigger_click":
 		current_right_geometry = _handle_trigger(RightHand, RightHandCollider, current_right_geometry, false)
 	elif button_name == "grip_click":
-		pass
+		current_right_geometry = _handle_grab(RightHand, RightHandCollider, current_right_geometry, false)
+
+################# INPUT HANDLING ####################
 
 ## Generic handler for trigger click or release events (to avoid code duplication)
 func _handle_trigger(hand: XRNode3D, collider: Area3D, current_geom: Geometry, click: bool) -> Geometry:
@@ -115,6 +117,20 @@ func _handle_trigger(hand: XRNode3D, collider: Area3D, current_geom: Geometry, c
 		for face in current_geom.get_faces():
 			face.held_by = null
 		finish_creating_geometry(hand, current_geom)
+		return null
+
+## Generic handler for grab button click or release events (to avoid code duplication)
+func _handle_grab(hand: XRNode3D, collider: Area3D, current_geom: Geometry, click: bool) -> Geometry:
+	if click:
+		# handle start grab
+		var overlapping_geometry = collider.get_overlapping_areas().filter(func filter(area): return area is Geometry)
+		if overlapping_geometry.size() > 0:
+			overlapping_geometry[0]._on_start_move(hand)
+			return overlapping_geometry[0]
+		else: return null
+	else:
+		# handle release grab
+		current_geom._on_end_move()
 		return null
 
 ##################### EVERYTHING ELSE #####################

@@ -1,6 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxgwwff6tuycq"]
+[gd_scene load_steps=3 format=3 uid="uid://dxgwwff6tuycq"]
 
 [ext_resource type="Script" uid="uid://dyj2iqub0lpqg" path="res://geometry/scripts/vertex.gd" id="1_ka5r6"]
 
+[sub_resource type="SphereMesh" id="SphereMesh_ka5r6"]
+radius = 0.05
+height = 0.1
+
 [node name="Vertex" type="Node3D"]
 script = ExtResource("1_ka5r6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_ka5r6")

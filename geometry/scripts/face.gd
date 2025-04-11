@@ -32,30 +32,34 @@ func _process(_delta: float) -> void:
 				geometry.end_vertex.global_position.z = new_position.z
 		face_moved.emit()
 
-func update_geometry(min_pos: Vector3, max_pos: Vector3, size: Vector3) -> void:
+func update_size(min_pos: Vector3, max_pos: Vector3, size: Vector3) -> void:
 	match controls:
 		"x" : 
-			global_position = Vector3(max_pos.x, min_pos.y, max_pos.z)
 			%Collider.shape.size.x = size.z
 			%Collider.shape.size.y = size.y
 		"-x": 
-			global_position = Vector3(min_pos.x, min_pos.y, max_pos.z)
 			%Collider.shape.size.y = size.y
 			%Collider.shape.size.x = size.z
 		"y" : 
-			global_position = Vector3(min_pos.x, max_pos.y, min_pos.z)
 			%Collider.shape.size.x = size.x
 			%Collider.shape.size.y = size.z
 		"-y": 
-			global_position = Vector3(min_pos.x, min_pos.y, min_pos.z)
 			%Collider.shape.size.x = size.x
 			%Collider.shape.size.y = size.z
 		"z" : 
-			global_position = Vector3(min_pos.x, min_pos.y, max_pos.z)
 			%Collider.shape.size.x = size.x
 			%Collider.shape.size.y = size.y
 		"-z": 
-			global_position = Vector3(min_pos.x, min_pos.y, min_pos.z)
 			%Collider.shape.size.x = size.x
 			%Collider.shape.size.y = size.y
+	update_position(min_pos, max_pos, size)
+
+func update_position(min_pos: Vector3, max_pos: Vector3, size: Vector3) -> void:
+	match controls:
+		"x" : global_position = Vector3(max_pos.x, min_pos.y, max_pos.z)
+		"-x": global_position = Vector3(min_pos.x, min_pos.y, max_pos.z)
+		"y" : global_position = Vector3(min_pos.x, max_pos.y, min_pos.z)
+		"-y": global_position = Vector3(min_pos.x, min_pos.y, min_pos.z)
+		"z" : global_position = Vector3(min_pos.x, min_pos.y, max_pos.z)
+		"-z": global_position = Vector3(min_pos.x, min_pos.y, min_pos.z)
 	%Collider.position = Vector3(%Collider.shape.size.x / 2, %Collider.shape.size.y / 2, 0)

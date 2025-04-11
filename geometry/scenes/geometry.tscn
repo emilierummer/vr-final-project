@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bpo5wx0w0psy2"]
+[gd_scene load_steps=10 format=3 uid="uid://bpo5wx0w0psy2"]
 
 [ext_resource type="Script" uid="uid://bep5pec2ef6xj" path="res://geometry/scripts/geometry.gd" id="1_0w0be"]
 [ext_resource type="Material" uid="uid://h6nth1uis7co" path="res://resources/box_material.tres" id="2_5v8ry"]
@@ -8,6 +8,10 @@
 [sub_resource type="BoxMesh" id="BoxMesh_rxjut"]
 resource_local_to_scene = true
 material = ExtResource("2_5v8ry")
+size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0rya1"]
+resource_local_to_scene = true
 size = Vector3(0.25, 0.25, 0.25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8uxxn"]
@@ -22,7 +26,7 @@ size = Vector3(0.25, 0.25, 0.05)
 resource_local_to_scene = true
 size = Vector3(0.25, 0.25, 0.05)
 
-[node name="Geometry" type="Node3D" node_paths=PackedStringArray("start_vertex", "end_vertex")]
+[node name="Geometry" type="Area3D" node_paths=PackedStringArray("start_vertex", "end_vertex")]
 script = ExtResource("1_0w0be")
 start_vertex = NodePath("StartVertex")
 end_vertex = NodePath("EndVertex")
@@ -36,6 +40,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.25, 0.25)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.125, 0.125)
 mesh = SubResource("BoxMesh_rxjut")
+
+[node name="BoxCollider" type="CollisionShape3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.125, 0.125, 0.125)
+shape = SubResource("BoxShape3D_0rya1")
+debug_color = Color(0, 0.6, 0.701961, 1)
 
 [node name="FaceColliders" type="Node3D" parent="."]
 unique_name_in_owner = true

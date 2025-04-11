@@ -1,4 +1,4 @@
-class_name Geometry extends Node3D
+class_name Geometry extends Area3D
 
 ## Minimum length of a size for the geometry (if the side is smaller than this, the geometry is not created)
 const MIN_SIDE_LENGTH: float = 0.1
@@ -13,6 +13,11 @@ var furniture_scene: Node3D
 ## Stores the size of the furniture's bounding box so it doesn't have to be recalculated
 var furniture_size: Vector3
 
+## Tracks which controller is holding the geometry
+var held_by: XRNode3D = null
+## Tracks how far offset the controller is from the geometry's root position
+var grab_offset: Vector3
+
 ##################### INPUT HANDLING #####################
 
 func _on_start_initial_drag(controller: XRNode3D) -> void:
@@ -23,6 +28,21 @@ func _on_start_initial_drag(controller: XRNode3D) -> void:
 func _on_end_initial_drag() -> void:
 	end_vertex.held_by = null
 	end_vertex.vertex_moved.disconnect(_on_box_size_change)
+
+func _on_start_move(controller: XRNode3D) -> void:
+	grab_offset = controller.global_position - global_position
+	held_by = controller
+
+func _on_end_move() -> void:
+	held_by = null
+
+## Every frame, if the geometry is being held, move it to the controller's position
+func _process(delta: float) -> void:
+	if held_by:
+		var new_position = held_by.global_position - grab_offset
+		if new_position != global_position:
+			global_position = new_position
+			_on_box_position_change()
 
 ######################### UTILS #########################
 
@@ -54,28 +74,45 @@ func get_faces():
 ##################### MESH UPDATING #####################
 
 func _on_box_size_change() -> void:
-	update_box_mesh()
-	update_faces()
-	update_furniture()
+	update_box_size()
+	update_face_sizes()
+	update_furniture_size()
 
-func update_box_mesh() -> void:
+func _on_box_position_change() -> void:
+	update_box_position()
+	update_face_positions()
+	update_furniture_position()
+
+func update_box_size() -> void:
 	%BoxMesh.mesh.size = size
-	%BoxMesh.global_position = Vector3(
+	%BoxCollider.shape.size = size
+	update_box_position()
+
+func update_box_position() -> void:
+	var offset = Vector3(
 		min_pos.x + size.x / 2,
 		min_pos.y + size.y / 2,
 		min_pos.z + size.z / 2,
 	)
+	%BoxMesh.global_position = offset
+	%BoxCollider.global_position = offset
 
-func update_faces() -> void:
+func update_face_sizes() -> void:
 	for face in get_faces():
-		face.update_geometry(min_pos, max_pos, size)
+		face.update_size(min_pos, max_pos, size)
 
-func update_furniture() -> void:
+func update_face_positions() -> void:
+	for face in get_faces():
+		face.update_position(min_pos, max_pos, size)
+
+func update_furniture_size() -> void:
 	if !furniture_scene: return
 	# scale furniture scene to match box
 	var furniture_scale = size / furniture_size
 	furniture_scene.transform = furniture_scene.transform.orthonormalized().scaled(furniture_scale)
-	# move furniture to line up with box
+	update_furniture_position()
+
+func update_furniture_position() -> void:
 	furniture_scene.global_position = Vector3(
 		min_pos.x + size.x / 2,
 		min_pos.y,
@@ -88,4 +125,4 @@ func set_furniture(furniture: PackedScene) -> void:
 	furniture_scene = furniture.instantiate()
 	add_child(furniture_scene)
 	furniture_size = furniture_scene.get_child(0).mesh.get_aabb().size
-	update_furniture()
+	update_furniture_size()
