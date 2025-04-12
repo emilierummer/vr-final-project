@@ -6,6 +6,9 @@ class_name Face extends Area3D
 ## Emitted every time the face is moved by the controller
 signal face_moved
 
+## Emitted if the axis of a face need to switch
+signal flip_axis(axis: String)
+
 ## Tracks which controller is holding the face
 var held_by: XRNode3D = null
 
@@ -13,23 +16,14 @@ var held_by: XRNode3D = null
 func _process(_delta: float) -> void:
 	if held_by:
 		var new_position = held_by.global_position
-		var distance_to_start = abs(new_position - geometry.start_vertex.global_position)
-		var distance_to_end   = abs(new_position - geometry.end_vertex.global_position)
-		if controls == "x" or controls == "-x":
-			if distance_to_start.x < distance_to_end.x:
-				geometry.start_vertex.global_position.x = new_position.x
-			else: 
-				geometry.end_vertex.global_position.x = new_position.x
-		elif controls == "y" or controls == "-y":
-			if distance_to_start.y < distance_to_end.y:
-				geometry.start_vertex.global_position.y = new_position.y
-			else: 
-				geometry.end_vertex.global_position.y = new_position.y
-		elif controls == "z" or controls == "-z":
-			if distance_to_start.z < distance_to_end.z:
-				geometry.start_vertex.global_position.z = new_position.z
-			else: 
-				geometry.end_vertex.global_position.z = new_position.z
+		# Move face
+		var control_vertex = geometry.start_vertex if controls.contains("-") else geometry.end_vertex
+		var control_axis = controls[-1]
+		control_vertex.global_position[control_axis] = new_position[control_axis]
+		# Check if the axis should swap
+		if geometry.start_vertex.global_position.x > geometry.end_vertex.global_position.x: flip_axis.emit("x")
+		if geometry.start_vertex.global_position.y > geometry.end_vertex.global_position.y: flip_axis.emit("y")
+		if geometry.start_vertex.global_position.z > geometry.end_vertex.global_position.z: flip_axis.emit("z")
 		face_moved.emit()
 
 func update_size(min_pos: Vector3, max_pos: Vector3, size: Vector3) -> void:

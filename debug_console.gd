@@ -15,8 +15,10 @@ func log(msg) -> void:
 		msg = "(" + str(snappedf(msg.x, 0.001)) + ", " + str(snappedf(msg.y, 0.001)) + ", " + str(snappedf(msg.z, 0.001)) + ")"
 	elif msg is int or msg is float:
 		msg = str(snappedf(msg, 0.001))
-	if msg is Transform3D:
+	elif msg is Transform3D:
 		msg = "Origin: (" + str(msg.origin) + ")\nBasis: (" + str(msg.basis) + ")"
+	elif msg is Face:
+		msg = "Face controlling " + msg.controls
 	# output message
 	print(msg)
 	if label:

@@ -92,11 +92,17 @@ controls = "z"
 geometry = NodePath("../..")
 
 [connection signal="face_moved" from="FaceColliders/FaceNegX" to="." method="_on_box_size_change"]
+[connection signal="flip_axis" from="FaceColliders/FaceNegX" to="." method="swap_face_axis"]
 [connection signal="face_moved" from="FaceColliders/FacePosX" to="." method="_on_box_size_change"]
+[connection signal="flip_axis" from="FaceColliders/FacePosX" to="." method="swap_face_axis"]
 [connection signal="face_moved" from="FaceColliders/FaceNegY" to="." method="_on_box_size_change"]
+[connection signal="flip_axis" from="FaceColliders/FaceNegY" to="." method="swap_face_axis"]
 [connection signal="face_moved" from="FaceColliders/FacePosY" to="." method="_on_box_size_change"]
+[connection signal="flip_axis" from="FaceColliders/FacePosY" to="." method="swap_face_axis"]
 [connection signal="face_moved" from="FaceColliders/FaceNegZ" to="." method="_on_box_size_change"]
+[connection signal="flip_axis" from="FaceColliders/FaceNegZ" to="." method="swap_face_axis"]
 [connection signal="face_moved" from="FaceColliders/FacePosZ" to="." method="_on_box_size_change"]
+[connection signal="flip_axis" from="FaceColliders/FacePosZ" to="." method="swap_face_axis"]
 
 [editable path="FaceColliders/FaceNegX"]
 [editable path="FaceColliders/FaceNegY"]

@@ -71,6 +71,21 @@ var max_pos: Vector3 :
 func get_faces():
 	return %"FaceColliders".get_children()
 
+## Swap the faces controlling a particular axis
+## Example: x becomes -x and -x becomes x
+func swap_face_axis(axis: String):
+	var pos = axis
+	var neg = "-" + axis
+	# Find the right faces
+	var faces = get_faces()
+	var pos_face_index = faces.find_custom(func find(face): return face.controls == pos)
+	var pos_face = faces[pos_face_index]
+	var neg_face_index = faces.find_custom(func find(face): return face.controls == neg)
+	var neg_face = faces[neg_face_index]
+	# Swap their controls
+	pos_face.controls = neg
+	neg_face.controls = pos
+
 ##################### MESH UPDATING #####################
 
 func _on_box_size_change() -> void:
