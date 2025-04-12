@@ -23,6 +23,10 @@ DebugConsole="*res://debug_console.gd"
 
 import/blender/enabled=false
 
+[global_group]
+
+ControllerColliders=""
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

@@ -73,7 +73,7 @@ func get_faces():
 
 ## Swap the faces controlling a particular axis
 ## Example: x becomes -x and -x becomes x
-func swap_face_axis(axis: String):
+func swap_face_axis(axis: String) -> void:
 	var pos = axis
 	var neg = "-" + axis
 	# Find the right faces

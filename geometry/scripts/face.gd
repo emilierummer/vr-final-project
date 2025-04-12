@@ -12,8 +12,15 @@ signal flip_axis(axis: String)
 ## Tracks which controller is holding the face
 var held_by: XRNode3D = null
 
+## Gets the controller's colliders for hover detection
+@onready var controller_colliders = get_tree().get_nodes_in_group("ControllerColliders")
+
 ## Every frame, if the face is being held, move it to the controller's position
 func _process(_delta: float) -> void:
+	# Check if the face is being hovered
+	var overlapping_controllers = get_overlapping_areas().filter(func filter(item): return controller_colliders.has(item))
+	#TODO: hovered = overlapping_controllers.size() > 0
+	# Move the face if it's being held
 	if held_by:
 		var new_position = held_by.global_position
 		# Move face
@@ -31,21 +38,33 @@ func update_size(min_pos: Vector3, max_pos: Vector3, size: Vector3) -> void:
 		"x" : 
 			%Collider.shape.size.x = size.z
 			%Collider.shape.size.y = size.y
+			%Mesh.mesh.size.x = size.z
+			%Mesh.mesh.size.y = size.y
 		"-x": 
-			%Collider.shape.size.y = size.y
 			%Collider.shape.size.x = size.z
+			%Collider.shape.size.y = size.y
+			%Mesh.mesh.size.x = size.z
+			%Mesh.mesh.size.y = size.y
 		"y" : 
 			%Collider.shape.size.x = size.x
 			%Collider.shape.size.y = size.z
+			%Mesh.mesh.size.x = size.x
+			%Mesh.mesh.size.y = size.z
 		"-y": 
 			%Collider.shape.size.x = size.x
 			%Collider.shape.size.y = size.z
+			%Mesh.mesh.size.x = size.x
+			%Mesh.mesh.size.y = size.z
 		"z" : 
 			%Collider.shape.size.x = size.x
 			%Collider.shape.size.y = size.y
+			%Mesh.mesh.size.x = size.x
+			%Mesh.mesh.size.y = size.y
 		"-z": 
 			%Collider.shape.size.x = size.x
 			%Collider.shape.size.y = size.y
+			%Mesh.mesh.size.x = size.x
+			%Mesh.mesh.size.y = size.y
 	update_position(min_pos, max_pos, size)
 
 func update_position(min_pos: Vector3, max_pos: Vector3, size: Vector3) -> void:
@@ -57,3 +76,4 @@ func update_position(min_pos: Vector3, max_pos: Vector3, size: Vector3) -> void:
 		"z" : global_position = Vector3(min_pos.x, min_pos.y, max_pos.z)
 		"-z": global_position = Vector3(min_pos.x, min_pos.y, min_pos.z)
 	%Collider.position = Vector3(%Collider.shape.size.x / 2, %Collider.shape.size.y / 2, 0)
+	%Mesh.position = Vector3(%Mesh.mesh.size.x / 2, %Mesh.mesh.size.y / 2, 0)

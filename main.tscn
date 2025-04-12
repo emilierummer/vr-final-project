@@ -28,7 +28,7 @@ tracker = &"left_hand"
 
 [node name="LeftHand" parent="Origin/LeftHand" instance=ExtResource("2_h2yge")]
 
-[node name="LeftHandCollider" type="Area3D" parent="Origin/LeftHand"]
+[node name="LeftHandCollider" type="Area3D" parent="Origin/LeftHand" groups=["ControllerColliders"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Origin/LeftHand/LeftHandCollider"]
 shape = SubResource("SphereShape3D_1bvp3")
@@ -39,7 +39,7 @@ tracker = &"right_hand"
 
 [node name="RightHand" parent="Origin/RightHand" instance=ExtResource("3_1bvp3")]
 
-[node name="RightHandCollider" type="Area3D" parent="Origin/RightHand"]
+[node name="RightHandCollider" type="Area3D" parent="Origin/RightHand" groups=["ControllerColliders"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Origin/RightHand/RightHandCollider"]
 shape = SubResource("SphereShape3D_1bvp3")
