@@ -2,6 +2,8 @@ class_name Menu extends Node3D
 
 signal furniture_selected(furniture: PackedScene)
 
+@export var Camera: Camera3D
+
 @onready var options: Array = %OptionGrid.get_children()
 
 var is_open: bool = false
@@ -21,6 +23,8 @@ func set_focus(value: int) -> void:
 	focused_option = value
 
 func open() -> void:
+	global_position = Camera.global_position
+	global_rotation_degrees.y = Camera.global_rotation_degrees.y
 	visible = true
 	set_focus(0)
 	is_open = true

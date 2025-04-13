@@ -1,13 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://2yptkjdg80nf"]
+[gd_scene load_steps=6 format=3 uid="uid://2yptkjdg80nf"]
 
 [ext_resource type="Script" uid="uid://dlm5740slvnjh" path="res://geometry/scripts/face.gd" id="1_wq543"]
+[ext_resource type="Shader" uid="uid://ddg06dkdas3bj" path="res://resources/face_shader.gdshader" id="2_luxa2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_wq543"]
 resource_local_to_scene = true
-size = Vector3(0.25, 0.25, 0.05)
+size = Vector3(0.25, 0.25, 0.01)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_71vgi"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("2_luxa2")
+shader_parameter/is_hovered = false
+shader_parameter/has_furniture = false
 
 [sub_resource type="BoxMesh" id="BoxMesh_wq543"]
 resource_local_to_scene = true
+material = SubResource("ShaderMaterial_71vgi")
 size = Vector3(0.25, 0.25, 0.001)
 
 [node name="Face" type="Area3D"]

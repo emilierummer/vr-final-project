@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds8tru5wyn10e"]
+
+[ext_resource type="Script" uid="uid://h6d70ogykc3i" path="res://player/controller.gd" id="1_7pjt0"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dfbcc"]
+radius = 0.05
+
+[node name="Controller" type="XRController3D"]
+script = ExtResource("1_7pjt0")
+
+[node name="Collider" type="Area3D" parent="." groups=["ControllerColliders"]]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collider"]
+shape = SubResource("SphereShape3D_dfbcc")
+
+[node name="TriggerTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="button_pressed" from="." to="." method="_handle_button_click"]
+[connection signal="button_released" from="." to="." method="_handle_button_release"]
+[connection signal="input_vector2_changed" from="." to="." method="_handle_trigger_input"]
