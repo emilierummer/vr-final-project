@@ -10,7 +10,6 @@ func handle_ax_click() -> void:
 	menu_toggle_open.emit()
 
 func handle_thumbstick_move(direction: String) -> void:
-	# send movement to the menu
 	match direction:
 		"up"   : menu_up.emit()
 		"down" : menu_down.emit()

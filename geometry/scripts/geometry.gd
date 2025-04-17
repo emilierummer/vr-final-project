@@ -101,85 +101,14 @@ var max_pos: Vector3 :
 	set(value):
 		printerr("Cannot set max_pos directly, modify start_vertex or end_vertex instead")
 
-#func get_faces():
-	#return %"FaceColliders".get_children()
-
-## Swap the faces controlling a particular axis
-## Example: x becomes -x and -x becomes x
-#func swap_face_axis(axis: String) -> void:
-	#var pos = axis
-	#var neg = "-" + axis
-	## Find the right faces
-	#var faces = get_faces()
-	#var pos_face_index = faces.find_custom(func find(face): return face.controls == pos)
-	#var pos_face = faces[pos_face_index]
-	#var neg_face_index = faces.find_custom(func find(face): return face.controls == neg)
-	#var neg_face = faces[neg_face_index]
-	## Swap their controls
-	#pos_face.controls = neg
-	#neg_face.controls = pos
-
 ##################### MESH UPDATING #####################
 
-#func _on_box_size_change() -> void:
-	#update_box_size()
-	#update_face_sizes()
-	#update_furniture_size()
-
-#func _on_box_position_change() -> void:
-	#update_box_position()
-	#update_face_positions()
-	#update_furniture_position()
-
-#func update_box_size() -> void:
-	#%BoxMesh.mesh.size = size
-	#%BoxCollider.shape.size = size
-	#update_box_position()
-
-#func update_box_position() -> void:
-	#var offset = Vector3(
-		#min_pos.x + size.x / 2,
-		#min_pos.y + size.y / 2,
-		#min_pos.z + size.z / 2,
-	#)
-	#%BoxMesh.global_position = offset
-	#%BoxCollider.global_position = offset
-
-#func update_face_sizes() -> void:
-	#for face in get_faces():
-		#face.update_size(min_pos, max_pos, size)
-
-#func update_face_positions() -> void:
-	#for face in get_faces():
-		#face.update_position(min_pos, max_pos, size)
-
-#func update_furniture_size() -> void:
-	#if !furniture_scene: return
-	## scale furniture scene to match box
-	#var furniture_scale = size / furniture_size
-	#furniture_scene.transform = furniture_scene.transform.orthonormalized().scaled(furniture_scale)
-	#update_furniture_position()
-
-#func update_furniture_position() -> void:
-	#furniture_scene.global_position = Vector3(
-		#min_pos.x + size.x / 2,
-		#min_pos.y,
-		#min_pos.z + size.z / 2,
-	#)
-
-#func set_furniture(furniture: PackedScene) -> void:
-	#if furniture_scene: furniture_scene.call_deferred("queue_free")
-	#%BoxMesh.visible = false
-	#furniture_scene = furniture.instantiate()
-	#add_child(furniture_scene)
-	#furniture_size = furniture_scene.get_child(0).mesh.get_aabb().size
-	#update_furniture_size()
-
-func set_furniture(furniture: PackedScene) -> void:
+func set_furniture(furniture: PackedScene, f_size: Vector3, f_rotation: Vector3) -> void:
 	if furniture_scene: furniture_scene.call_deferred("queue_free")
 	furniture_scene = furniture.instantiate()
 	add_child(furniture_scene)
-	furniture_size = furniture_scene.get_child(0).mesh.get_aabb().size
+	furniture_size = f_size
+	#TODO set furniture rotation
 	for face in faces: 
 		face.set_has_furniture_mesh(true)
 	on_size_changed()

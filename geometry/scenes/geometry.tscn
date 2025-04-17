@@ -14,6 +14,7 @@ resource_local_to_scene = true
 size = Vector3(0.25, 0.25, 0.05)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5ut0l"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_u2krq")
 shader_parameter/is_hovered = false
@@ -29,6 +30,7 @@ resource_local_to_scene = true
 size = Vector3(0.25, 0.25, 0.05)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0rya1"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_u2krq")
 shader_parameter/is_hovered = false
@@ -44,6 +46,7 @@ resource_local_to_scene = true
 size = Vector3(0.25, 0.25, 0.05)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ifqda"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("4_u2krq")
 shader_parameter/is_hovered = false

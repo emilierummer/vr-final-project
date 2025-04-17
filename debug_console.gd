@@ -1,6 +1,6 @@
 extends Node
 
-const MAX_LINES = 100
+const MAX_LINES = 25
 
 var label: Label3D = null
 

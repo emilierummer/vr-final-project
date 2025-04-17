@@ -5,16 +5,12 @@ var grab_offset: Vector3
 var disabled: bool
 
 func grab(controller: Controller, use_offset: bool = true) -> void:
-	if disabled:
-		DebugConsole.log("Tried to grab but it was disabled...")
-		return
-	DebugConsole.log("Grab!")
+	if disabled: return
 	held_by = controller
 	if use_offset: grab_offset = controller.global_position - self.global_position
 	else: grab_offset = Vector3.ZERO
 
 func drop() -> void:
-	DebugConsole.log("Drop!")
 	held_by = null
 
 func disable() -> void:

@@ -14,12 +14,12 @@ void fragment() {
 		ALPHA = 0.4;
 	} else if(is_hovered) {
 		ALBEDO = vec3(0.75, 0.55, 0.1);
-		ALPHA = 1.0;
+		ALPHA = 0.8;
 	} else if(has_furniture) {
 		ALPHA = 0.0;
 	} else {
 		ALBEDO = vec3(0.9, 0.7, 0.2);
-		ALPHA = 1.0;
+		ALPHA = 0.8;
 	}
 }
 

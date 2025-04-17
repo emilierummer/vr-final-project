@@ -13,11 +13,21 @@ signal geometry_created(geometry: Geometry)
 ## to make it so we only debounce events for the same direction multiple times
 var prev_trigger_direction: String
 
+## The geometry that is currently being edited/moved by this controller
 var current_geometry: Geometry
 
+## The selected furniture scene
 var selected_furniture: PackedScene
+## The size of the selected furniture
+var selected_furniture_size: Vector3 = Vector3(1, 1, 1)
+## The rotation of the selected furniture (this is the rotation 
+## while being held by the controller)
+var selected_furniture_rotation: Vector3 = Vector3(0, 0, 0)
+## The selected furniture node (so that it can be removed when a 
+## new one is selected)
+var selected_furniture_node: Node = null
 
-################### INPUT PROCESSING ####################
+############################## INPUT PROCESSING ###############################
 
 func _handle_button_click(button: String) -> void:
 	if button == "trigger_click": 
@@ -59,7 +69,7 @@ func _handle_trigger_input(_button: String, value: Vector2) -> void:
 	# start timer until debounce is over
 	%TriggerTimer.start(TRIGGER_DEBOUNCE)
 
-##################### INPUT HANDLING ####################
+################################ INPUT HANDLING ###############################
 
 func handle_trigger_click() -> void:
 	var overlapping_geometry = %Collider.get_overlapping_areas().filter(func filter(area): return area is Geometry)
@@ -78,7 +88,10 @@ func handle_trigger_click() -> void:
 	if selected_furniture:
 		DebugConsole.log("Placing furniture")
 		# place furniture on geometry
-		current_geometry.set_furniture(selected_furniture)
+		current_geometry.set_furniture(selected_furniture, selected_furniture_size, selected_furniture_rotation)
+		selected_furniture_node.call_deferred("queue_free")
+		selected_furniture_node = null
+		selected_furniture_rotation = Vector3(0, 0, 0)
 		selected_furniture = null
 		current_geometry = null
 		return
