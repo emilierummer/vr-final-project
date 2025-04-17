@@ -88,7 +88,7 @@ func handle_trigger_click() -> void:
 	if selected_furniture:
 		DebugConsole.log("Placing furniture")
 		# place furniture on geometry
-		current_geometry.set_furniture(selected_furniture, selected_furniture_size, selected_furniture_rotation)
+		current_geometry.set_furniture(selected_furniture, selected_furniture_size, selected_furniture_rotation, self)
 		selected_furniture_node.call_deferred("queue_free")
 		selected_furniture_node = null
 		selected_furniture_rotation = Vector3(0, 0, 0)

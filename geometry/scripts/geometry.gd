@@ -50,33 +50,6 @@ func on_size_changed() -> void:
 			min_pos.z + size.z / 2
 		)
 
-
-##################### INPUT HANDLING #####################
-
-#func _on_start_initial_drag(controller: XRNode3D) -> void:
-	#end_vertex.held_by = controller
-	#end_vertex.vertex_moved.connect(_on_box_size_change)
-	#global_position = controller.global_position
-
-#func _on_end_initial_drag() -> void:
-	#end_vertex.held_by = null
-	#end_vertex.vertex_moved.disconnect(_on_box_size_change)
-
-#func _on_start_move(controller: XRNode3D) -> void:
-	#grab_offset = controller.global_position - global_position
-	#held_by = controller
-
-#func _on_end_move() -> void:
-	#held_by = null
-
-## Every frame, if the geometry is being held, move it to the controller's position
-#func _process(delta: float) -> void:
-	#if held_by:
-		#var new_position = held_by.global_position - grab_offset
-		#if new_position != global_position:
-			#global_position = new_position
-			#_on_box_position_change()
-
 ######################### UTILS #########################
 
 var size: Vector3 :
@@ -103,12 +76,12 @@ var max_pos: Vector3 :
 
 ##################### MESH UPDATING #####################
 
-func set_furniture(furniture: PackedScene, f_size: Vector3, f_rotation: Vector3) -> void:
+func set_furniture(furniture: PackedScene, f_size: Vector3, f_rotation: Vector3, controller: Controller) -> void:
 	if furniture_scene: furniture_scene.call_deferred("queue_free")
 	furniture_scene = furniture.instantiate()
 	add_child(furniture_scene)
 	furniture_size = f_size
-	#TODO set furniture rotation
+	furniture_scene.rotation_degrees.y = round((controller.rotation_degrees.y + f_rotation.y) / 90) * 90
 	for face in faces: 
 		face.set_has_furniture_mesh(true)
 	on_size_changed()

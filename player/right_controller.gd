@@ -19,20 +19,10 @@ func handle_select_furniture(furniture: PackedScene) -> void:
 ## Rotates the selected furniture node in the controller
 func handle_thumbstick_move(direction: String) -> void:
 	match direction:
-		"up": 
-			selected_furniture_rotation.x -= 90
-			if selected_furniture_rotation.x > 360: selected_furniture_rotation.x -= 360
-			elif selected_furniture_rotation.x < 0: selected_furniture_rotation.x += 360
-		"down": 
-			selected_furniture_rotation.x += 90
-			if selected_furniture_rotation.x > 360: selected_furniture_rotation.x -= 360
-			elif selected_furniture_rotation.x < 0: selected_furniture_rotation.x += 360
 		"left": 
-			selected_furniture_rotation.z += 90
-			if selected_furniture_rotation.z > 360: selected_furniture_rotation.z -= 360
-			elif selected_furniture_rotation.z < 0: selected_furniture_rotation.z += 360
+			selected_furniture_rotation.y += 90
 		"right": 
-			selected_furniture_rotation.z -= 90
-			if selected_furniture_rotation.z > 360: selected_furniture_rotation.z -= 360
-			elif selected_furniture_rotation.z < 0: selected_furniture_rotation.z += 360
+			selected_furniture_rotation.y -= 90
+	if selected_furniture_rotation.y > 360: selected_furniture_rotation.y -= 360
+	elif selected_furniture_rotation.y < 0: selected_furniture_rotation.y += 360
 	selected_furniture_node.rotation_degrees = selected_furniture_rotation
