@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://clo0fnstn01ew"]
+[gd_scene load_steps=3 format=3 uid="uid://clo0fnstn01ew"]
 
 [ext_resource type="Theme" uid="uid://dbw7um713ooop" path="res://resources/menu_theme.tres" id="1_em5aw"]
 [ext_resource type="Script" uid="uid://ccjtk7t7pdq1l" path="res://menu/menu_item.gd" id="1_t4yl1"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_em5aw"]
-viewport_path = NodePath("FurnitureSubViewport")
 
 [node name="MenuItem" type="Button"]
 custom_minimum_size = Vector2(256, 256)
@@ -45,5 +42,4 @@ offset_right = 192.0
 offset_bottom = 240.0
 size_flags_horizontal = 4
 size_flags_vertical = 8
-texture = SubResource("ViewportTexture_em5aw")
 expand_mode = 5

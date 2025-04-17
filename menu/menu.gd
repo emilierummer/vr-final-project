@@ -39,24 +39,24 @@ func toggle_open() -> void:
 
 func handle_up() -> void:
 	if not is_open: return
-	if focused_option - 4 < 0: set_focus(-1)
-	else: set_focus(focused_option - 4)
+	if focused_option - 2 < 0: set_focus(-1)
+	else: set_focus(focused_option - 2)
 
 func handle_down() -> void:
 	if not is_open: return
 	if focused_option == -1: 
 		set_focus(0)
-	elif focused_option + 4 < options.size():
-		set_focus(focused_option + 4)
+	elif focused_option + 2 < options.size():
+		set_focus(focused_option + 2)
 
 func handle_left() -> void:
 	if not is_open: return
-	if focused_option % 4 != 0:
+	if focused_option % 2 != 0:
 		set_focus(focused_option - 1)
 
 func handle_right() -> void:
 	if not is_open: return
-	if focused_option % 4 != 3:
+	if focused_option % 2 != 1:
 		set_focus(focused_option + 1)
 
 func handle_select() -> void:
