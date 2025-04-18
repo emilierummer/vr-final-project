@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://by2hfcqlj8sls"]
+
+[ext_resource type="PackedScene" uid="uid://bghp3lmkepyq2" path="res://resources/meshes/flower_001.glb" id="1_h11pl"]
+
+[node name="flower_0012" instance=ExtResource("1_h11pl")]

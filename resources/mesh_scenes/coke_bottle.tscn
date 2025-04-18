@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://b03m0jda5vjeq"]
+
+[ext_resource type="PackedScene" uid="uid://bvkkd50roogq1" path="res://resources/meshes/drink_001.glb" id="1_b117e"]
+
+[node name="drink_0012" instance=ExtResource("1_b117e")]

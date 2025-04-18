@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbhre7bjjikm3"]
+
+[ext_resource type="PackedScene" uid="uid://bwa1k4xpr8b3j" path="res://resources/meshes/dumbbell_001.glb" id="1_h60ea"]
+
+[node name="dumbbell_0012" instance=ExtResource("1_h60ea")]
+
+[node name="dumbbell_001" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.117886, 0)

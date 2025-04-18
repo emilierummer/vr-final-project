@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b110mqb4o6n8e"]
+
+[ext_resource type="PackedScene" uid="uid://cce134umbcpr6" path="res://resources/meshes/office_table_001.glb" id="1_sdwc6"]
+
+[node name="office_table_0012" instance=ExtResource("1_sdwc6")]
+
+[node name="office_table_001" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0310227)

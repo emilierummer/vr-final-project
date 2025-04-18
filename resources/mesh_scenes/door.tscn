@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://biasi2jg71lfx"]
+
+[ext_resource type="PackedScene" uid="uid://c42ophshwxdxs" path="res://resources/meshes/door_001.glb" id="1_x8xqv"]
+
+[node name="door_0012" instance=ExtResource("1_x8xqv")]
+
+[node name="door_001" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.552205, 0, 0)

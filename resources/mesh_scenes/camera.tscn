@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfwvk4dd6mpub"]
+
+[ext_resource type="PackedScene" uid="uid://knnnf4s4kr2f" path="res://resources/meshes/camera_001.glb" id="1_cwc6m"]
+
+[node name="camera_0012" instance=ExtResource("1_cwc6m")]
+
+[node name="camera_001" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00570635, -0.042227)

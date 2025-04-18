@@ -81,7 +81,7 @@ func set_furniture(furniture: PackedScene, f_size: Vector3, f_rotation: Vector3,
 	furniture_scene = furniture.instantiate()
 	add_child(furniture_scene)
 	furniture_size = f_size
-	furniture_scene.rotation_degrees.y = round((controller.rotation_degrees.y + f_rotation.y) / 90) * 90
+	#furniture_scene.rotation_degrees.y = round((controller.rotation_degrees.y + f_rotation.y) / 90) * 90
 	for face in faces: 
 		face.set_has_furniture_mesh(true)
 	on_size_changed()

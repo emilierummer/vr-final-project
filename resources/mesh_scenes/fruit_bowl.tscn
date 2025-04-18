@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://ba26imp7f6iia"]
+
+[ext_resource type="PackedScene" uid="uid://0kgdnemnwydi" path="res://resources/meshes/dish_002.glb" id="1_r5sb7"]
+
+[node name="dish_0022" instance=ExtResource("1_r5sb7")]

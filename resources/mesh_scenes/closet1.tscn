@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://1rey4atq7vpv"]
+
+[ext_resource type="PackedScene" uid="uid://d2t4m7p1w8fnj" path="res://resources/meshes/closet_001.glb" id="1_apiiy"]
+
+[node name="closet_0012" instance=ExtResource("1_apiiy")]
+
+[node name="closet_001" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0310227)

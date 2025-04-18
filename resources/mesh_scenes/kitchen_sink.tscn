@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dadm2hy0se0ay"]
+
+[ext_resource type="PackedScene" uid="uid://ct2pv6pwo3obg" path="res://resources/meshes/kitchen_sink_001.glb" id="1_n6wyt"]
+
+[node name="kitchen_sink_0012" instance=ExtResource("1_n6wyt")]

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bc61qjq45tjns"]
+
+[ext_resource type="PackedScene" uid="uid://ddht6r1h75yrc" path="res://resources/meshes/toy_002.glb" id="1_qvxte"]
+
+[node name="toy_0022" instance=ExtResource("1_qvxte")]

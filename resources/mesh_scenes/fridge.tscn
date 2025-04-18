@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2mn86omgqtr6"]
+
+[ext_resource type="PackedScene" uid="uid://dtlh6mkobs0uv" path="res://resources/meshes/fridge_001.glb" id="1_jiiil"]
+
+[node name="fridge_0012" instance=ExtResource("1_jiiil")]
+
+[node name="fridge_001" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0744545)

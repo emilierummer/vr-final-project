@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpotaweb1j3k6"]
+
+[ext_resource type="PackedScene" uid="uid://dhsnpi3vfvqjk" path="res://resources/meshes/closet_002.glb" id="1_uhup1"]
+
+[node name="closet_0022" instance=ExtResource("1_uhup1")]
+
+[node name="closet_002" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0190115)

@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxtyp42rl4t2c"]
+
+[ext_resource type="PackedScene" uid="uid://c1ydrbnpeiikk" path="res://resources/meshes/training_item_002.glb" id="1_dh40o"]
+
+[node name="training_item_0022" instance=ExtResource("1_dh40o")]

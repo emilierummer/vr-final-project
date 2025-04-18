@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dknuksp1hrcl3"]
+
+[ext_resource type="PackedScene" uid="uid://bobug41fs32ns" path="res://resources/meshes/bathroom_item_001.glb" id="1_sp08m"]
+
+[node name="bathroom_item_0012" instance=ExtResource("1_sp08m")]

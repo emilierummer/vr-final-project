@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfjqk2lupvhhs"]
+
+[ext_resource type="PackedScene" uid="uid://s8vpija4mqjx" path="res://resources/meshes/microwave_oven_001.glb" id="1_7lh3c"]
+
+[node name="microwave_oven_0012" instance=ExtResource("1_7lh3c")]
+
+[node name="microwave_oven_001" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0186135)

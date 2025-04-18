@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://icku28ttoptm"]
+
+[ext_resource type="PackedScene" uid="uid://dcd6c2pgrgemi" path="res://resources/meshes/sofa_001.glb" id="1_2mvb1"]
+
+[node name="sofa_0012" instance=ExtResource("1_2mvb1")]

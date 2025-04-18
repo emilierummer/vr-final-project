@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgf6tu7uh2p0t"]
+
+[ext_resource type="PackedScene" uid="uid://kdoq12s8eeyq" path="res://resources/meshes/air_hockey_001.glb" id="1_3qcr5"]
+
+[node name="air_hockey_0012" instance=ExtResource("1_3qcr5")]
+
+[node name="air_hockey_001" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.34125, 0)

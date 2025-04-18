@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnlwjpmv0h2o5"]
+
+[ext_resource type="PackedScene" uid="uid://drwlmcd6jr5bb" path="res://resources/meshes/washing_machine_001.glb" id="1_4b0g4"]
+
+[node name="washing_machine_0012" instance=ExtResource("1_4b0g4")]

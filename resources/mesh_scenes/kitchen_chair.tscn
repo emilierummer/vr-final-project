@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dsoch8vwkqjl5"]
+
+[ext_resource type="PackedScene" uid="uid://bxhfk35sfjqm6" path="res://resources/meshes/kitchen_chair_001.glb" id="1_xunir"]
+
+[node name="kitchen_chair_0012" instance=ExtResource("1_xunir")]
+
+[node name="kitchen_chair_001" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0248179)

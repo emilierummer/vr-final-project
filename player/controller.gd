@@ -73,10 +73,16 @@ func _handle_trigger_input(_button: String, value: Vector2) -> void:
 
 func handle_trigger_click() -> void:
 	var overlapping_geometry = %Collider.get_overlapping_areas().filter(func filter(area): return area is Geometry)
-	DebugConsole.log("Trigger clicked")
+	var clear_selected_furniture = func(): 
+		if selected_furniture_node:
+			selected_furniture_node.call_deferred("queue_free")
+			selected_furniture_node = null
+		selected_furniture_rotation = Vector3(0, 0, 0)
+		selected_furniture = null
+			
 	if overlapping_geometry.size() == 0:
-		DebugConsole.log("Starting creating geometry")
 		# start creating geometry
+		clear_selected_furniture.call()
 		var new_geometry = PACKED_GEOMETRY.instantiate()
 		current_geometry = new_geometry
 		new_geometry.connect("ready", new_geometry.start_create.bind(self), ConnectFlags.CONNECT_ONE_SHOT)
@@ -84,15 +90,10 @@ func handle_trigger_click() -> void:
 		return
 	
 	current_geometry = overlapping_geometry[0]
-	DebugConsole.log("Found overlapping geometry")
 	if selected_furniture:
-		DebugConsole.log("Placing furniture")
 		# place furniture on geometry
 		current_geometry.set_furniture(selected_furniture, selected_furniture_size, selected_furniture_rotation, self)
-		selected_furniture_node.call_deferred("queue_free")
-		selected_furniture_node = null
-		selected_furniture_rotation = Vector3(0, 0, 0)
-		selected_furniture = null
+		clear_selected_furniture.call()
 		current_geometry = null
 		return
 	

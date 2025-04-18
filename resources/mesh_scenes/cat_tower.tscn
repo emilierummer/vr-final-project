@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctvalwekgfcr0"]
+
+[ext_resource type="PackedScene" uid="uid://cm44s341ypuig" path="res://resources/meshes/scratching_post_001.glb" id="1_ugm0q"]
+
+[node name="scratching_post_0012" instance=ExtResource("1_ugm0q")]
