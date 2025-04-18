@@ -1,7 +1,6 @@
 class_name Controller extends XRNode3D
 
 const TRIGGER_THRESHOLD = 0.5
-const TRIGGER_DEBOUNCE = 0.5
 var PACKED_GEOMETRY = preload("res://geometry/scenes/geometry.tscn")
 
 signal geometry_created(geometry: Geometry)
@@ -67,7 +66,7 @@ func _handle_trigger_input(_button: String, value: Vector2) -> void:
 	# handle input
 	handle_thumbstick_move(trigger_direction)
 	# start timer until debounce is over
-	%TriggerTimer.start(TRIGGER_DEBOUNCE)
+	%TriggerTimer.start()
 
 ################################ INPUT HANDLING ###############################
 

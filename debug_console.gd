@@ -7,6 +7,7 @@ var label: Label3D = null
 func _ready() -> void:
 	label = Label3D.new()
 	add_child(label)
+	label.text = "Debug Console:"
 	label.global_position = Vector3(0, 2, -5)
 
 var num_lines: int = 1
@@ -25,7 +26,7 @@ func log(msg) -> void:
 func clear() -> void:
 	num_lines = 1
 	var split_text = label.text.split("\n", true, 1)
-	label.text = split_text[0] + "\n"
+	label.text = split_text[0]
 
 func stringify(msg) -> String:
 	if msg is String: 
