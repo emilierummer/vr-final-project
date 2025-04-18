@@ -36,7 +36,6 @@ func _handle_button_click(button: String) -> void:
 	elif button == "ax_button":
 		handle_ax_click()
 	elif button == "by_button":
-		#TODO remove this before submitting
 		DebugConsole.clear()
 
 func _handle_button_release(button: String) -> void:
